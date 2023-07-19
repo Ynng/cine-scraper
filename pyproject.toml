@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "cine-scraper"
+version = "0.1.0"
+description = ""
+authors = ["Wenqi Huang <44907675+Ynng@users.noreply.github.com>"]
+readme = "README.md"
+packages = [{include = "cine_scraper"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+selenium = "^4.10.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
