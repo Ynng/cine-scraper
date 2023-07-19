@@ -69,17 +69,19 @@ def spin_discord_bot():
 class MyClient(discord.Client):
     async def on_ready(self):
         print('Logged on as', self.user)
+        self.check_dates.start()
 
     @tasks.loop(seconds=60)
     async def check_dates(self):
         try:
             dates = get_dates()
-            now = datetime.now()
             print("Got dates: " + str(dates))
             latest_date = max(dates)
-            if latest_date.date() > datetime(2021, 7, 27).date():
+            if latest_date.date() > datetime(2021, 7, 26).date():
                 channel = self.get_channel(int(CHANNEL_ID))
-                await channel.send("Oppenheimer is available on " + date.strftime("%B %d, %Y")) # type: ignore
+                await channel.send("<@!" + OWNER_ID + "> Oppenheimer is available on " + latest_date.strftime("%B %d, %Y")) # type: ignore
         except Exception as e:
             channel = self.get_channel(int(CHANNEL_ID))
             await channel.send("Error occurred while checking dates: " + str(e))  # type: ignore
+
+spin_discord_bot()
