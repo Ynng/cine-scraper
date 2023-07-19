@@ -82,7 +82,7 @@ class MyClient(discord.Client):
             if latest_date.date() > TARGET_DATE.date():
                 await channel.send("<@!" + OWNER_ID + "> Oppenheimer is available on " + latest_date.strftime("%B %d, %Y")) # type: ignore
             else:
-                await channel.send("The latest showing
+                await channel.send("The latest showing of Oppenheimer is on " + latest_date.strftime("%B %d, %Y"))
         except Exception as e:
             channel = self.get_channel(int(CHANNEL_ID))
             await channel.send("<@!" + OWNER_ID + "> Error occurred while checking dates: " + str(e))  # type: ignore
