@@ -18,6 +18,7 @@ OWNER_ID = "285889916225847296"
 
 MOVIE_LINK = "https://www.cineplex.com/movie/oppenheimer-the-imax-experience-in-70mm-film"
 THEATRE_NAME = "Cineplex Cinemas Mississauga"
+TARGET_DATE = datetime(2023, 7, 27)
 
 
 def get_dates(verbose: bool = False) -> list[datetime]:
@@ -78,10 +79,10 @@ class MyClient(discord.Client):
             print("Got dates: " + str(dates))
             latest_date = max(dates)
             channel = self.get_channel(int(CHANNEL_ID))
-            if latest_date.date() > datetime(2023, 7, 27).date():
+            if latest_date.date() > TARGET_DATE.date():
                 await channel.send("<@!" + OWNER_ID + "> Oppenheimer is available on " + latest_date.strftime("%B %d, %Y")) # type: ignore
             else:
-                await channel.send("Oppenheimer is only available before July 27, 2021") # type: ignore
+                await channel.send("The latest showing
         except Exception as e:
             channel = self.get_channel(int(CHANNEL_ID))
             await channel.send("<@!" + OWNER_ID + "> Error occurred while checking dates: " + str(e))  # type: ignore
